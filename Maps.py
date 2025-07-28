@@ -92,13 +92,19 @@ fig = px.choropleth(
         'Grand Bargain %': 'The Grand Bargain',
         'Total Participants': 'Total Respondents'
     },
-    title="Which would you choose:<br>The Grand Bargain or <br>The country's current direction?"
 )
 
 fig.update_layout(
+    title=dict(
+        text="Which would you choose:<br>The Grand Bargain or the country's current direction?",
+        y=0.97,          # vertical position (0–1)
+        pad=dict(b=40)   # extra padding below the title
+    ),
+    margin=dict(l=0, r=0, t=120, b=120),  # increase t (top margin)
     geo=dict(bgcolor='rgba(0,0,0,0)'),
     plot_bgcolor='white',
-    margin=dict(l=0, r=0, t=150, b=120),  # ✅ increase b (bottom margin)
+)
+    margin=dict(l=0, r=0, t=50, b=120),  # ✅ increase b (bottom margin)
     coloraxis_colorbar=dict(
         orientation='h',
         yanchor='bottom',
