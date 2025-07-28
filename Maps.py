@@ -102,12 +102,16 @@ fig = px.choropleth(
 fig.update_layout(
     geo=dict(bgcolor='rgba(0,0,0,0)'),
     plot_bgcolor='white',
+    margin=dict(l=0, r=0, t=50, b=120),  # ✅ increase b (bottom margin)
     coloraxis_colorbar=dict(
         orientation='h',
         yanchor='bottom',
         y=-0.3,
         xanchor='center',
         x=0.5
+        tickmode='array',
+        tickvals=[i/10 for i in range(0, 11)],  # 0.0 → 1.0
+        ticktext=[str(i*10) for i in range(0, 11)]  # 0 → 100
     ),
     annotations=[
         dict(
