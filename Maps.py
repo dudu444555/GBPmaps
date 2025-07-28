@@ -64,26 +64,48 @@ support_counts = (
     .reset_index()
 )
 
-# ✅ Compute normal Percent
-support_counts['Percent'] = support_counts['Grand Bargain'] / support_counts['Total Participants']
+# Ensure both columns exist
+if "Grand Bargain" not in support_counts.columns:
+    support_counts["Grand Bargain"] = 0
+if "Current Direction" not in support_counts.columns:
+    support_counts["Current Direction"] = 0
 
-# ✅ Create a display version that is reversed
+# Compute totals
+support_counts['Total Participants'] = (
+    support_counts['Grand Bargain'] + support_counts['Current Direction']
+)
+
+# Compute Percent (normal)
+support_counts['Percent'] = (
+    support_counts['Grand Bargain'] / support_counts['Total Participants']
+)
+
+# Create reversed display version for legend
 support_counts['Percent_display'] = 1 - support_counts['Percent']
 
-# ✅ Plot using Percent_display but reverse the color scale
+# Format percentage for hover
+support_counts['Grand Bargain %'] = (
+    (support_counts['Percent'] * 100)
+    .fillna(0)
+    .round(0)
+    .astype(int)
+    .astype(str) + '%'
+)
+
+# Plot choropleth
 fig = px.choropleth(
     support_counts,
     locations='State Abbr',
     locationmode='USA-states',
     scope="usa",
-    color='Percent_display',   # <-- Use reversed display version
+    color='Percent_display',
     hover_name='State Abbr',
     hover_data={
-        'Percent': True,               # Show the actual percent in hover
+        'Percent': True,
         'Grand Bargain %': True,
         'Total Participants': True
     },
-    color_continuous_scale='RdYlGn_r',  # <-- Reverse the scale
+    color_continuous_scale='RdYlGn_r',
     labels={
         'Percent': 'Grand Bargain',
         'Grand Bargain %': 'The Grand Bargain',
