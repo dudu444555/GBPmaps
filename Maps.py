@@ -108,8 +108,18 @@ fig.update_layout(
         yanchor='bottom',
         y=-0.3,
         xanchor='center',
-        x=0.5,
-        title_side='right'   # ✅ puts the title on the right
-    )
+        x=0.5
+    ),
+    annotations=[
+        dict(
+            x=1,  # far right
+            y=-0.25,  # same vertical position as colorbar
+            xref='paper',
+            yref='paper',
+            text='Grand Bargain',  # legend title text
+            showarrow=False,
+            font=dict(size=12)
+        )
+    ]
 )
 st.plotly_chart(fig, use_container_width=True)
