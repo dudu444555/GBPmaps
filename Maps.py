@@ -12,7 +12,7 @@ july_df = pd.read_csv("YouGov Data - July.csv")
 july_df["Month"] = "July"
 
 # Combine
-df = pd.concat([may_df, june_df, july_df])
+df = pd.concat([july_df])
 
 """In states with the fewest residents, the sample size is too small to rely on. Future polls will focus on these states to get more precise data.
 """
