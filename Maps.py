@@ -96,6 +96,7 @@ fig = px.choropleth(
     title="Which would you choose:<br>The Grand Bargain or the country's current direction?"
 )
 
+
 fig.update_layout(
     geo=dict(bgcolor='rgba(0,0,0,0)'),
     plot_bgcolor='white',
@@ -104,18 +105,7 @@ fig.update_layout(
         yanchor='bottom',
         y=-0.3,
         xanchor='center',
-        x=0.5,
-        title=None
-    ),
-    coloraxis=dict(
-        colorbar=dict(
-            orientation='h',
-            yanchor='bottom',
-            y=-0.3,
-            xanchor='center',
-            x=0.5
-        ),
-        reversescale=True  # ✅ This swaps the numeric scale direction
+        x=0.5
     )
 )
 
