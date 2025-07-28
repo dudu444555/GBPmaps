@@ -92,17 +92,13 @@ fig = px.choropleth(
         'Grand Bargain %': 'The Grand Bargain',
         'Total Participants': 'Total Respondents'
     },
+    title="Which would you choose:<br>The Grand Bargain or <br>The country's current direction?"
 )
 
 fig.update_layout(
-    title=dict(
-        text="Which would you choose:<br>The Grand Bargain or the country's current direction?",
-        y=0.97,                      # Push title up
-        pad=dict(b=40)               # Add space below title
-    ),
-    margin=dict(l=0, r=0, t=120, b=140),  # Add space above & below map
     geo=dict(bgcolor='rgba(0,0,0,0)'),
     plot_bgcolor='white',
+    margin=dict(l=0, r=0, t=50, b=120),  # ✅ increase b (bottom margin)
     coloraxis_colorbar=dict(
         orientation='h',
         yanchor='bottom',
@@ -110,18 +106,19 @@ fig.update_layout(
         xanchor='center',
         x=0.5,
         tickmode='array',
-        tickvals=[i/100 for i in range(10, 101, 10)],   # values 0.1 → 1
-        ticktext=[str(i) for i in range(10, 101, 10)],  # labels 10 → 100
+        tickvals=[i/10 for i in range(0, 11)],  # 0.0 → 1.0
+        ticktext=[str(i*10) for i in range(0, 11)]  # 0 → 100
     ),
     annotations=[
         dict(
-            x=0.8,  # Adjust until the text aligns with the right edge of the bar
-            y=-0.32,
+            x=0.78,  # adjust until aligned with the right edge of the bar
+            y=-0.33, # slightly below or above the bar
             xref='paper',
             yref='paper',
-            text='Grand Bargain',   # Legend title
+            text='Grand Bargain',
             showarrow=False,
-            font=dict(size=12)
+            font=dict(size=15)
         )
     ]
 )
+st.plotly_chart(fig, use_container_width=True)
