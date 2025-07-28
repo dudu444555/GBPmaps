@@ -87,7 +87,7 @@ fig = px.choropleth(
         'Grand Bargain %': True,
         'Total Participants': True
     },
-    color_continuous_scale='RdYlGn_r',
+    color_continuous_scale='RdYlGn',
     labels={
         'Percent': 'Grand Bargain',
         'Grand Bargain %': 'The Grand Bargain',
@@ -100,12 +100,15 @@ fig.update_layout(
     geo=dict(bgcolor='rgba(0,0,0,0)'),
     plot_bgcolor='white',
     coloraxis_colorbar=dict(
-        orientation='h',
-        yanchor='bottom',
-        y=-0.3,
-        xanchor='center',
-        x=0.5
-    )
+    orientation='h',
+    yanchor='bottom',
+    y=-0.3,
+    xanchor='center',
+    x=0.5,
+    tickmode='array',
+    tickvals=[0, 0.5, 1],
+    ticktext=['0', '0.5', '1']
+)
 )
 
 st.plotly_chart(fig, use_container_width=True)
