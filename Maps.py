@@ -93,8 +93,19 @@ fig = px.choropleth(
         'Grand Bargain %': 'The Grand Bargain',
         'Total Participants': 'Total Respondents'
     },
-    title="Which would you choose: The Grand Bargain or the country's current direction?"
+    title="Which would you choose:<br>The Grand Bargain or the country's current direction?"
 )
 
-fig.update_layout(geo=dict(bgcolor='rgba(0,0,0,0)'), plot_bgcolor='white')
+fig.update_layout(
+    geo=dict(bgcolor='rgba(0,0,0,0)'),
+    plot_bgcolor='white',
+    coloraxis_colorbar=dict(
+        orientation='h',
+        yanchor='bottom',
+        y=-0.3,
+        xanchor='center',
+        x=0.5
+    )
+)
+
 st.plotly_chart(fig, use_container_width=True)
