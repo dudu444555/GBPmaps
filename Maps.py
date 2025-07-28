@@ -64,30 +64,26 @@ support_counts = (
     .reset_index()
 )
 
-support_counts['Total Participants'] = support_counts['Grand Bargain'] + support_counts['Current Direction']
+# ✅ Compute normal Percent
 support_counts['Percent'] = support_counts['Grand Bargain'] / support_counts['Total Participants']
-support_counts['Grand Bargain %'] = (
-    (support_counts['Percent'] * 100)
-    .fillna(0)              # handle states with no data
-    .round(0)
-    .astype(int)
-    .astype(str) + '%'
-)
 
-# 5. Plot choropleth
+# ✅ Create a display version that is reversed
+support_counts['Percent_display'] = 1 - support_counts['Percent']
+
+# ✅ Plot using Percent_display but reverse the color scale
 fig = px.choropleth(
     support_counts,
     locations='State Abbr',
     locationmode='USA-states',
     scope="usa",
-    color='Percent',
+    color='Percent_display',   # <-- Use reversed display version
     hover_name='State Abbr',
     hover_data={
-        'Percent': False,
+        'Percent': True,               # Show the actual percent in hover
         'Grand Bargain %': True,
         'Total Participants': True
     },
-    color_continuous_scale='RdYlGn',
+    color_continuous_scale='RdYlGn_r',  # <-- Reverse the scale
     labels={
         'Percent': 'Grand Bargain',
         'Grand Bargain %': 'The Grand Bargain',
@@ -95,7 +91,6 @@ fig = px.choropleth(
     },
     title="Which would you choose:<br>The Grand Bargain or the country's current direction?"
 )
-
 
 fig.update_layout(
     geo=dict(bgcolor='rgba(0,0,0,0)'),
@@ -105,10 +100,7 @@ fig.update_layout(
         yanchor='bottom',
         y=-0.3,
         xanchor='center',
-        x=0.5,
-        tickmode='array',
-        tickvals=[0, 0.5, 1],  # actual values
-        ticktext=['1', '0.5', '0']  # labels swapped
+        x=0.5
     )
 )
 
