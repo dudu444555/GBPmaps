@@ -6,13 +6,17 @@ import us  # pip install us
 st.set_page_config(layout="wide")
 
 # Load CSVs
+may_df = pd.read_csv("YouGov Data - May.csv")
+june_df = pd.read_csv("YouGov Data - June.csv")
 july_df = pd.read_csv("YouGov Data - July.csv")
 
 # Add month column
+may_df["Month"] = "May"
+june_df["Month"] = "June"
 july_df["Month"] = "July"
 
 # Combine
-df = pd.concat([july_df])
+df = pd.concat([may_df, june_df, july_df])
 
 """In states with the fewest residents, the sample size is too small to rely on. Future polls will focus on these states to get more precise data.
 """
