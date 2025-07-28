@@ -98,7 +98,7 @@ fig = px.choropleth(
     locations='State Abbr',
     locationmode='USA-states',
     scope="usa",
-    color='Percent_display',
+    color='Grand Bargain',
     hover_name='State Abbr',
     hover_data={
         'Percent': True,
