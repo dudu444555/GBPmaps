@@ -93,11 +93,10 @@ fig = px.choropleth(
     },
     color_continuous_scale='RdYlGn',
     labels={
-        'Percent': 'Grand Bargain',
         'Grand Bargain %': 'The Grand Bargain',
         'Total Participants': 'Total Respondents'
     },
-    title="Which would you choose: The Grand Bargain or the country's current direction?"
+    title="Which would you choose:<br>The Grand Bargain or the country's current direction?"
 )
 
 fig.update_layout(
@@ -112,11 +111,11 @@ fig.update_layout(
     ),
     annotations=[
         dict(
-            x=1,  # far right
-            y=-0.25,  # same vertical position as colorbar
+            x=0.75,  # adjust until aligned with the right edge of the bar
+            y=-0.32, # slightly below or above the bar
             xref='paper',
             yref='paper',
-            text='Grand Bargain',  # legend title text
+            text='Grand Bargain',
             showarrow=False,
             font=dict(size=12)
         )
