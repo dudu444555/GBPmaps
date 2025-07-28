@@ -9,8 +9,6 @@ st.set_page_config(layout="wide")
 july_df = pd.read_csv("YouGov Data - July.csv")
 
 # Add month column
-may_df["Month"] = "May"
-june_df["Month"] = "June"
 july_df["Month"] = "July"
 
 # Combine
