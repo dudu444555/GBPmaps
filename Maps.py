@@ -18,11 +18,7 @@ july_df["Month"] = "July"
 # Combine
 df = pd.concat([may_df, june_df, july_df])
 
-"""#Geographic visualizations of US states
-
-These visualizations will create interactive maps of the US states, with breakdowns of votes on different criteria.
-
-These visualizations are for a single month at a time only.
+"""In states with the fewest residents, the sample size is too small to rely on. Future polls will focus on these states to get more precise data.
 """
 
 # US state name to abbreviation mapping
