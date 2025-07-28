@@ -18,7 +18,11 @@ july_df["Month"] = "July"
 # Combine
 df = pd.concat([may_df, june_df, july_df])
 
-"""In states with the fewest residents, the sample size is too small to rely on. Future polls will focus on these states to get more precise data.
+"""#Geographic visualizations of US states
+
+These visualizations will create interactive maps of the US states, with breakdowns of votes on different criteria.
+
+These visualizations are for a single month at a time only.
 """
 
 # US state name to abbreviation mapping
@@ -64,54 +68,36 @@ support_counts = (
     .reset_index()
 )
 
-# Ensure both columns exist
-if "Grand Bargain" not in support_counts.columns:
-    support_counts["Grand Bargain"] = 0
-if "Current Direction" not in support_counts.columns:
-    support_counts["Current Direction"] = 0
-
-# Compute totals
-support_counts['Total Participants'] = (
-    support_counts['Grand Bargain'] + support_counts['Current Direction']
-)
-
-# Compute Percent (normal)
-support_counts['Percent'] = (
-    support_counts['Grand Bargain'] / support_counts['Total Participants']
-)
-
-# Create reversed display version for legend
-support_counts['Percent_display'] = 1 - support_counts['Percent']
-
-# Format percentage for hover
+support_counts['Total Participants'] = support_counts['Grand Bargain'] + support_counts['Current Direction']
+support_counts['Percent'] = support_counts['Grand Bargain'] / support_counts['Total Participants']
 support_counts['Grand Bargain %'] = (
     (support_counts['Percent'] * 100)
-    .fillna(0)
+    .fillna(0)              # handle states with no data
     .round(0)
     .astype(int)
     .astype(str) + '%'
 )
 
-# Plot choropleth
+# 5. Plot choropleth
 fig = px.choropleth(
     support_counts,
     locations='State Abbr',
     locationmode='USA-states',
     scope="usa",
-    color='Grand Bargain',
+    color='Percent',
     hover_name='State Abbr',
     hover_data={
-        'Percent': True,
+        'Percent': False,
         'Grand Bargain %': True,
         'Total Participants': True
     },
-    color_continuous_scale='RdYlGn_r',
+    color_continuous_scale='RdYlGn',
     labels={
         'Percent': 'Grand Bargain',
         'Grand Bargain %': 'The Grand Bargain',
         'Total Participants': 'Total Respondents'
     },
-    title="Which would you choose:<br>The Grand Bargain or the country's current direction?"
+    title="Which would you choose: The Grand Bargain or the country's current direction?"
 )
 
 fig.update_layout(
@@ -122,8 +108,8 @@ fig.update_layout(
         yanchor='bottom',
         y=-0.3,
         xanchor='center',
-        x=0.5
+        x=0.5,
+        title_side='right'   # ✅ puts the title on the right
     )
 )
-
 st.plotly_chart(fig, use_container_width=True)
