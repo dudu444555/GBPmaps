@@ -18,11 +18,7 @@ july_df["Month"] = "July"
 # Combine
 df = pd.concat([may_df, june_df, july_df])
 
-"""#Geographic visualizations of US states
-
-These visualizations will create interactive maps of the US states, with breakdowns of votes on different criteria.
-
-These visualizations are for a single month at a time only.
+"""In states with the fewest residents, the sample size is too small to rely on. Future polls will focus on these states to get more precise data.
 """
 
 # US state name to abbreviation mapping
@@ -96,13 +92,13 @@ fig = px.choropleth(
         'Grand Bargain %': 'The Grand Bargain',
         'Total Participants': 'Total Respondents'
     },
-    title="Which would you choose:<br>The Grand Bargain or the country's current direction?"
+    title="Which would you choose:<br>The Grand Bargain or <br>The country's current direction?"
 )
 
 fig.update_layout(
     geo=dict(bgcolor='rgba(0,0,0,0)'),
     plot_bgcolor='white',
-    margin=dict(l=0, r=0, t=50, b=120),  # ✅ increase b (bottom margin)
+    margin=dict(l=0, r=0, t=150, b=120),  # ✅ increase b (bottom margin)
     coloraxis_colorbar=dict(
         orientation='h',
         yanchor='bottom',
