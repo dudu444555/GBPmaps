@@ -6,17 +6,13 @@ import us  # pip install us
 st.set_page_config(layout="wide")
 
 # Load CSVs
-may_df = pd.read_csv("YouGov Data - May.csv")
-june_df = pd.read_csv("YouGov Data - June.csv")
 july_df = pd.read_csv("YouGov Data - July.csv")
 
 # Add month column
-may_df["Month"] = "May"
-june_df["Month"] = "June"
 july_df["Month"] = "July"
 
 # Combine
-df = pd.concat([may_df, june_df, july_df])
+df = pd.concat([july_df])
 
 """In states with the fewest residents, the sample size is too small to rely on. Future polls will focus on these states to get more precise data.
 """
@@ -53,7 +49,7 @@ df['State Abbr'] = df['inputstate'].apply(lambda x: us.states.lookup(x).abbr if 
 df['GBP Label'] = pd.Categorical(df['GBP Label'], categories=['Grand Bargain', 'Current Direction'], ordered=True)
 
 # Month toggle
-month = st.radio("Select Month", ["May", "June", "July"], horizontal=True)
+month = st.radio("Select Month", ["July"], horizontal=True)
 month_df = df[df["Month"] == month]
 
 # 4. Compute % choosing Grand Bargain and total participants per state
