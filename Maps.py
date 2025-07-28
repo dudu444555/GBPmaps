@@ -108,7 +108,7 @@ fig.update_layout(
         yanchor='bottom',
         y=-0.3,
         xanchor='center',
-        x=0.5
+        x=0.5,
         tickmode='array',
         tickvals=[i/10 for i in range(0, 11)],  # 0.0 → 1.0
         ticktext=[str(i*10) for i in range(0, 11)]  # 0 → 100
