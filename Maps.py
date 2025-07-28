@@ -6,8 +6,6 @@ import us  # pip install us
 st.set_page_config(layout="wide")
 
 # Load CSVs
-may_df = pd.read_csv("YouGov Data - May.csv")
-june_df = pd.read_csv("YouGov Data - June.csv")
 july_df = pd.read_csv("YouGov Data - July.csv")
 
 # Add month column
