@@ -117,7 +117,7 @@ fig.update_layout(
             yref='paper',
             text='Grand Bargain',
             showarrow=False,
-            font=dict(size=20)
+            font=dict(size=15)
         )
     ]
 )
