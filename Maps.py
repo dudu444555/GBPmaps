@@ -87,7 +87,7 @@ fig = px.choropleth(
         'Grand Bargain %': True,
         'Total Participants': True
     },
-    color_continuous_scale='RdYlGn',
+    color_continuous_scale='RdYlGn_r',
     labels={
         'Percent': 'Grand Bargain',
         'Grand Bargain %': 'The Grand Bargain',
