@@ -92,7 +92,7 @@ fig = px.choropleth(
         'Grand Bargain %': 'The Grand Bargain',
         'Total Participants': 'Total Respondents'
     },
-    title="Which would you choose:<br>The Grand Bargain or <br>The country's current direction?"
+    title="Which would you choose:<br>The Grand Bargain or <br>The current direction?"
 )
 
 fig.update_layout(
