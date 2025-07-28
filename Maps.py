@@ -111,8 +111,8 @@ fig.update_layout(
     ),
     annotations=[
         dict(
-            x=0.85,  # adjust until aligned with the right edge of the bar
-            y=-0.42, # slightly below or above the bar
+            x=0.78,  # adjust until aligned with the right edge of the bar
+            y=-0.33, # slightly below or above the bar
             xref='paper',
             yref='paper',
             text='Grand Bargain',
