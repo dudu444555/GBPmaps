@@ -101,15 +101,15 @@ fig.update_layout(
     geo=dict(bgcolor='rgba(0,0,0,0)'),
     plot_bgcolor='white',
     coloraxis_colorbar=dict(
-    orientation='h',
-    yanchor='bottom',
-    y=-0.3,
-    xanchor='center',
-    x=0.5,
-    tickmode='array',
-    tickvals=[1, 0.5, 0],        # reverse order
-    ticktext=['0', '0.5', '1']   # display normal labels
-)
+        orientation='h',
+        yanchor='bottom',
+        y=-0.3,
+        xanchor='center',
+        x=0.5,
+        tickmode='array',
+        tickvals=[0, 0.5, 1],  # actual values
+        ticktext=['1', '0.5', '0']  # labels swapped
+    )
 )
 
 st.plotly_chart(fig, use_container_width=True)
